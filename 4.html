@@ -1,0 +1,14 @@
+<script>
+  /* 일급 활용 */
+  const delay100 = (a) => new Promise((resolve) => setTimeout(resolve(a), 100));
+  const goBefore = (a, f) => f(a);
+  const add5 = (a) => a + 5;
+
+  const goAfter = (a, f) => (a instanceof Promise ? a.then(f) : f(a));
+
+  var n1 = 5;
+  goAfter(goAfter(n1, add5), console.log);
+
+  var n2 = delay100(5);
+  goAfter(goAfter(n2, add5), console.log);
+</script>
